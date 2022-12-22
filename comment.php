@@ -15,14 +15,22 @@ function setComments($conn) {
 function getComments($conn){
     $sql = "SELECT * FROM comments";
     $result = $conn->query($sql);
-    while($row = $result->fetch_assoc()){
-        echo "<div class='comment-box'><p>";
-             echo $row['uid']."<br>";
-             echo $row['date']."<br>";
-             echo $row['message']."<br>";
-             echo "<div>  <form method='POST' action='".likeSubmit($conn,$row)."'>  <button type='submit' name='".$row['cid']."' class='likeSubmit'>Like</button>  Likes: ".$row["likes"]."  </form></div>";
-             echo "<hr>";
-             echo "<p></div>";
+    $max_page_posts = 100;
+    $last_post = mysqli_num_rows($result);
+    $i = 0;
+    while(($row = $result->fetch_assoc())){
+        if (($last_post - $i) > $max_page_posts ){
+        }
+        else{
+            echo "<div class='comment-box'><p>";
+            echo $row['uid']."<br>";
+            echo $row['date']."<br>";
+            echo $row['message']."<br>";
+            echo "<div>  <form method='POST' action='".likeSubmit($conn,$row)."'>  <button type='submit' name='".$row['cid']."' class='likeSubmit'>Like</button>  Likes: ".$row["likes"]."  </form></div>";
+            echo "<hr>";
+            echo "<p></div>";
+        }
+    $i++;
     }
 }
 
