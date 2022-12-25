@@ -50,9 +50,9 @@ function getComments($conn){
             if ($img_id) {
                 echo "<td><img style = 'width:390px;' src = 'img/".$img_id."' alt = 'Тут могло быть изображение'/> </td>";
                 }
-            echo "<div>  <form method='POST' action='".likeSubmit($conn,$row)."'>  <button type='submit' name='".$row['cid']."' class='likeSubmit'>Like</button>  Likes: ".$row["likes"]."  </form></div>";
+            echo "<div>  <form method='POST' action='".likeSubmit($conn,$row)."'>  <button type='submit' name='".'like'.$row['cid']."' class='likeSubmit'>Like</button>  Likes: ".$row["likes"]."  </form></div>";
             echo "<br>";
-            echo "<div>  <form method='POST' action='".dislikeSubmit($conn,$row)."'>  <button type='submit' name='".$row['cid']."' class='dislikeSubmit' style='  background-color: #ff0000; color: white; border: none; cursor: pointer; opacity: 0.9;'>Dislike</button>  Dislikes: ".$row["dislikes"]."  </form></div>";
+            echo "<div>  <form method='POST' action='".dislikeSubmit($conn,$row)."'>  <button type='submit' name='".'dislike'.$row['cid']."' class='dislikeSubmit' style='  background-color: #ff0000; color: white; border: none; cursor: pointer; opacity: 0.9;'>Dislike</button>  Dislikes: ".$row["dislikes"]."  </form></div>";
             echo "<hr>";
             echo "<p></div>";
         }
@@ -61,7 +61,7 @@ function getComments($conn){
 }
 
 function likeSubmit($conn,$row){
-    if(isset($_POST[$row['cid']])) {
+    if(isset($_POST['like'.$row['cid']])) {
         $cid = $row['cid'];
         $likes = $row['likes']+1;
         $query = "UPDATE comments SET likes = '$likes' WHERE cid = '$cid'";
@@ -70,7 +70,7 @@ function likeSubmit($conn,$row){
 }
 
 function dislikeSubmit($conn,$row){
-    if(isset($_POST[$row['cid']])) {
+    if(isset($_POST['dislike'.$row['cid']])) {
         $cid = $row['cid'];
         $dislikes = $row['dislikes'] + 1;
         $query = "UPDATE comments SET dislikes = '$dislikes' WHERE cid = '$cid'";

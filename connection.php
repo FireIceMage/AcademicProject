@@ -6,5 +6,5 @@ if (!$conn){
     die("Connection failed: ".mysqli_connect_error());
 }
 
-$db = new \PDO('mysql'.':host='.'localhost'.';dbname='.'commentsection','root','');
+
 
