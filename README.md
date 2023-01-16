@@ -109,8 +109,8 @@ PHP, HTML.
 ![](pictures/alg-auth.png)
 
 ### Пример HTTP запросов/ответов
-![](pictures/get_Example1.png)
-![](pictures/get_Example2.png)
+![](pictures/get_example1.png)
+![](pictures/get_example2.png)
 
 ### Значимые фрагменты кода
 **Получения данных из аккаунта ВКонтакте**:
